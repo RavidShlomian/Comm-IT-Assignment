@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+ name: nginx-app
+ namespace: argocd #namespace to install ArgoCD
+spec:
+ project: default
+ source:
+   repoURL: 'https://github.com/RavidShlomian/dev'
+   targetRevision: main
+   path: '.'
+ destination:
+   server: 'https://kubernetes.default.svc'
+   namespace: nginx
+ syncPolicy:
+   automated:
+     prune: true
+     selfHeal: true
+   syncOptions:
+   - CreateNamespace=true
