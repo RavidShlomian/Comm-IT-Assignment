@@ -2,3 +2,4 @@
 *.backup
 *.hcl
 .terraform/
+*.pem
