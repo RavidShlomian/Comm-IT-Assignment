@@ -31,7 +31,7 @@ provider "helm" {
 
 provider "aws" {
   region = "eu-north-1"
-  # setting default tag to all the configuration at once. .
+  # setting default tag to all the configuration at once. 
   default_tags {
     tags = {
       Environment = "test"
