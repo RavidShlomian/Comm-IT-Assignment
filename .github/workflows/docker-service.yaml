@@ -63,19 +63,19 @@ jobs:
       run: |
           # Assuming you have a script to update the image in your manifests
           # For example, replace the image in deployment.yaml
-          sed -i "s|image: .*|image: $REPO_NAME/$IMAGE_NAME:${{ env.VERSION }}|" manifests/deployment.yaml
+        sed -i "s|image: .*|image: $REPO_NAME/$IMAGE_NAME:${{ env.VERSION }}|" manifests/deployment.yaml
 
-      - name: Commit and Push Changes to Manifests
-        run: |
-          cd manifests
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          git add deployment.yaml  # Add the files you modified
-          git commit -m "Update image to REPO_NAME/$IMAGE_NAME:${{ env.VERSION }}"
-          git push origin main  # Push changes back to the manifests repo
+    - name: Commit and Push Changes to Manifests
+      run: |
+        cd manifests
+        git config user.name "GitHub Actions"
+        git config user.email "actions@github.com"
+        git add deployment.yaml  # Add the files you modified
+        git commit -m "Update image to REPO_NAME/$IMAGE_NAME:${{ env.VERSION }}"
+        git push origin main  # Push changes back to the manifests repo
 
           # Set the remote repository
-          git remote add manifests https://github.com/RavidShlomian/dev.git
+        git remote add manifests https://github.com/RavidShlomian/dev.git
 
           # Push changes to the manifests repository
-          git push https://x-access-token:${{ secrets.TOKEN_GITHUB }}@github.com/RavidShlomian/dev.git feature:main
+        git push https://x-access-token:${{ secrets.TOKEN_GITHUB }}@github.com/RavidShlomian/dev.git feature:main
