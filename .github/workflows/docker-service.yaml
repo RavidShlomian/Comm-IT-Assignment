@@ -60,7 +60,7 @@ jobs:
         path: manifests  # Path to clone the manifests repository
 
     - name: Update Kubernetes Manifests
-        run: |
+      run: |
           # Assuming you have a script to update the image in your manifests
           # For example, replace the image in deployment.yaml
           sed -i "s|image: .*|image: $REPO_NAME/$IMAGE_NAME:${{ env.VERSION }}|" manifests/deployment.yaml
