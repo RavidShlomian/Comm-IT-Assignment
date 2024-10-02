@@ -69,7 +69,7 @@ jobs:
 
     - name: Tag Docker Image
       run: |
-        echo "NEW_VERSION=${{ env.NEW_VERSION }}"
+        echo "NEW_VERSION=$NEW_VERSION"
         docker tag $IMAGE_NAME:latest $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$REPO_NAME/$IMAGE_NAME:${{ env.NEW_VERSION }}
 
     - name: Push Docker Image to ECR
