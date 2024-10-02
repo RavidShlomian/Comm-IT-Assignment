@@ -6,7 +6,7 @@ metadata:
 spec:
  project: default
  source:
-   repoURL: 'https://github.com/RavidShlomian/dev'
+   repoURL: 'https://github.com/RavidShlomian/k8s-manifests'
    targetRevision: main
    path: '.'
  destination:
