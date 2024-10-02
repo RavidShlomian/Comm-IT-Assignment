@@ -87,13 +87,13 @@ jobs:
 
     - name: Update Kubernetes Manifests
       run: |
-        sed -i "s|image: .*|image: $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$REPO_NAME/$IMAGE_NAME:1.0.0|" manifests/deployment.yaml
+        sed -i "s|image: .*|image: $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$REPO_NAME/$IMAGE_NAME:1.0.0|" manifests/manifests/deployment.yaml
 
     - name: Commit and Push Changes to Manifests
       run: |
         cd manifests
         git config user.name "GitHub Actions"
         git config user.email "actions@github.com"
-        git add deployment.yaml
+        git add manifests/deployment.yaml
         git commit -m "Update image to $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$REPO_NAME/$IMAGE_NAME:${{ env.VERSION }}"
         git push https://x-access-token:${{ secrets.TOKEN_GITHUB }}@github.com/RavidShlomian/dev.git main
