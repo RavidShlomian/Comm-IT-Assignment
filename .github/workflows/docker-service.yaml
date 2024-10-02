@@ -87,7 +87,7 @@ jobs:
 
     - name: Update Kubernetes Manifests
       run: |
-        sed -i "s|image: .*|image: $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$REPO_NAME/$IMAGE_NAME:${{ env.VERSION }}|" manifests/deployment.yaml
+        sed -i "s|image: .*|image: $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$REPO_NAME/$IMAGE_NAME:1.0.0|" manifests/deployment.yaml
 
     - name: Commit and Push Changes to Manifests
       run: |
