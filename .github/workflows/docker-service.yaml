@@ -68,12 +68,10 @@ jobs:
 
     - name: Tag Docker Image
       run: |
-        #docker tag $IMAGE_NAME:latest $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$REPO_NAME:latest
         docker tag $IMAGE_NAME:latest $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$REPO_NAME:${{ env.NEW_VERSION }}
 
     - name: Push Docker Image to ECR
       run: |
-        #docker push $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$REPO_NAME:latest
         docker push $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$REPO_NAME:${{ env.NEW_VERSION }}
 
     - name: Confirm Push
