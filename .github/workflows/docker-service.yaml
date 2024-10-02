@@ -68,15 +68,15 @@ jobs:
     - name: Tag Docker Image
       run: |
         echo "$NEW_VERSION" > version.txt
-        docker tag $IMAGE_NAME:latest $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$REPO_NAME:$NEW_VERSION
+        docker tag $IMAGE_NAME:latest $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$REPO_NAME:1.0.0
 
     - name: Push Docker Image to ECR
       run: |
-        docker push $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$REPO_NAME:${{ env.NEW_VERSION }}
+        docker push $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$REPO_NAME:1.0.0
 
     - name: Confirm Push
       run: |
-        echo "Docker image pushed to ECR: $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$REPO_NAME:${{ env.NEW_VERSION }}"
+        echo "Docker image pushed to ECR: $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$REPO_NAME:1.0.0"
 
     - name: Checkout Manifests Repository
       uses: actions/checkout@v2
