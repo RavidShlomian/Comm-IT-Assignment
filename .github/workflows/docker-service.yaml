@@ -64,7 +64,7 @@ jobs:
     - name: Checkout Manifests Repository
       uses: actions/checkout@v2
       with:
-        repository: ${{ env.MANIFEST_REPO }}  # Reference the manifest repo env variable
+        repository: ${{ secrets.MANIFEST_REPO }}  
         token: ${{ secrets.TOKEN_GITHUB }}
         path: manifests  # This clones the separate repository into the 'manifests' directory
 

@@ -7,5 +7,5 @@ RUN rm /etc/nginx/conf.d/default.conf
 # copy the custom nginx configuration file into the container
 COPY nginx.conf /etc/nginx/nginx.conf
 
-# expose port 80 to access the web server again with corrected it yesd trigger
+# expose port 80 to access the web server again with corrected it yesd trigger it afia
 EXPOSE 80
