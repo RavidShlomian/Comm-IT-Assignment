@@ -44,7 +44,7 @@ jobs:
     - name: Get Version from File
       id: get_version
       run: |
-        VERSION=$(cat version)
+        VERSION=$(cat ./Docker/version)
         echo "VERSION=$VERSION" >> $GITHUB_ENV
 
     - name: Tag Docker Image
