@@ -83,7 +83,7 @@ jobs:
       with:
         repository: ${{ secrets.MANIFEST_REPO }}  
         token: ${{ secrets.TOKEN_GITHUB }}
-        path: manifests  # This clones the separate repository into the 'manifests' directory
+        path: manifests  # This clones the separate repository into the 'manifests' directoryu
 
     - name: Update Kubernetes Manifests
       run: |
