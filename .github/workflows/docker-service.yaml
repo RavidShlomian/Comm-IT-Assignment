@@ -63,15 +63,11 @@ jobs:
         fi
 
         NEW_VERSION="$major.$minor.$patch"
-        echo "NEW_VERSION=$NEW_VERSION"
-        
-
+        echo "::set-output name=NEW_VERSION::$NEW_VERSION"
 
     - name: Tag Docker Image
       run: |
-        NEW_VERSION=${{ env.NEW_VERSION }}"
-        echo "$NEW_VERSION"
-        docker tag $IMAGE_NAME:latest $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$REPO_NAME/$IMAGE_NAME:${{ env.NEW_VERSION }}
+        docker tag $IMAGE_NAME:latest $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$REPO_NAME/$IMAGE_NAME:${{ steps.get_version.outputs.NEW_VERSION }}
 
     - name: Push Docker Image to ECR
       run: |
