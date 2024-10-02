@@ -39,7 +39,7 @@ jobs:
 
     - name: Build Docker Image
       run: |
-        docker build -t $IMAGE_NAME ./docker
+        docker build -t $IMAGE_NAME ./Docker
 
     - name: Get Version from File
       id: get_version
