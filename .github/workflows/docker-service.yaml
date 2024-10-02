@@ -45,21 +45,40 @@ jobs:
       id: get_version
       run: |
         VERSION=$(cat ./Docker/version)
-        echo "VERSION=$VERSION" >> $GITHUB_ENV
+        IFS='.' read -r major minor patch <<< "$VERSION"
+        
+        # Assuming we increment the patch for each build
+        patch=$((patch + 1))
+        
+        # Reset patch and increment minor if it reaches 10 (or any threshold)
+        if [ "$patch" -ge 10 ]; then
+          patch=0
+          minor=$((minor + 1))
+        fi
+        
+        # Reset minor and increment major if it reaches 10 (or any threshold)
+        if [ "$minor" -ge 10 ]; then
+          minor=0
+          major=$((major + 1))
+        fi
+
+        NEW_VERSION="$major.$minor.$patch"
+        echo "NEW_VERSION=$NEW_VERSION"
+
 
     - name: Tag Docker Image
       run: |
         #docker tag $IMAGE_NAME:latest $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$REPO_NAME:latest
-        docker tag $IMAGE_NAME:latest $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$REPO_NAME:${{ env.VERSION }}
+        docker tag $IMAGE_NAME:latest $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$REPO_NAME:${{ env.NEW_VERSION }}
 
     - name: Push Docker Image to ECR
       run: |
         #docker push $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$REPO_NAME:latest
-        docker push $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$REPO_NAME:${{ env.VERSION }}
+        docker push $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$REPO_NAME:${{ env.NEW_VERSION }}
 
     - name: Confirm Push
       run: |
-        echo "Docker image pushed to ECR: $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$REPO_NAME/$IMAGE_NAME:latest"
+        echo "Docker image pushed to ECR: $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$REPO_NAME:${{ env.NEW_VERSION }}"
 
     - name: Checkout Manifests Repository
       uses: actions/checkout@v2
