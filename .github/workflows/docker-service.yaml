@@ -66,8 +66,10 @@ jobs:
         echo "::set-output name=NEW_VERSION::$NEW_VERSION"
 
     - name: Tag Docker Image
+      env:
+        NEW_VERSION: ${{ steps.get_version.outputs.NEW_VERSION }}
       run: |
-        docker tag $IMAGE_NAME:latest $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$REPO_NAME/$IMAGE_NAME:${{ steps.get_version.outputs.NEW_VERSION }}
+        docker tag $IMAGE_NAME:latest $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$REPO_NAME/$IMAGE_NAME:$NEW_VERSION
 
     - name: Push Docker Image to ECR
       run: |
