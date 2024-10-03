@@ -83,11 +83,11 @@ jobs:
       with:
         repository: ${{ secrets.MANIFEST_REPO }}  
         token: ${{ secrets.TOKEN_GITHUB }}
-        path: manifests  # This clones the separate repository into the 'manifests' directoryu
+        path: manifests-repo  # This clones the separate repository into the 'manifests' directoryu
 
     - name: Update Kubernetes Manifests
       run: |
-        sed -i "s|image: .*|image: $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$REPO_NAME/$IMAGE_NAME:1.0.0|" manifests/manifests/deployment.yaml
+        sed -i 's|image:.*|image: '"${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.REPO_NAME }}/${{ secrets.IMAGE_NAME }}:1.0.0"'|' manifests/deployment.yaml
 
     - name: Commit and Push Changes to Manifests
       run: |
