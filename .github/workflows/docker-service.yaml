@@ -9,7 +9,7 @@ on:
 
 permissions:
   contents: write
-  
+
 env:
   AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -99,6 +99,7 @@ jobs:
         git config user.name "GitHub Actions"
         git config user.email "actions@github.com"
         git checkout -b dev
+        git pull
         git add manifests/deployment.yaml
         git commit -m "Update image to $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$REPO_NAME/$IMAGE_NAME:${{ env.VERSION }}"
         git push https://x-access-token:${{ secrets.TOKEN_GITHUB }}@github.com/RavidShlomian/k8s-manifests.git dev
