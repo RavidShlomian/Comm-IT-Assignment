@@ -1,7 +1,7 @@
 # use the official nginx base image
 FROM nginx:latest
 
-# remove the default nginx configuration file so it will use the new one i createddfffefefdd
+# remove the default nginx configuration file so it will use the new one i createddfffefefddגג
 RUN rm /etc/nginx/conf.d/default.conf
 
 # copy the custom nginx configuration file into the containerjjSdEeRRccffdddewddrdffddss
