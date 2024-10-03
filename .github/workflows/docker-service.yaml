@@ -92,7 +92,7 @@ jobs:
 
     - name: Commit and Push Changes to Manifests
       run: |
-        cd manifests
+        cd manifests-repo
         git config user.name "GitHub Actions"
         git config user.email "actions@github.com"
         git add manifests/deployment.yaml
