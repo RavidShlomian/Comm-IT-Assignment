@@ -9,25 +9,25 @@ metadata:
     keel.sh/docker.repo: 324483885455.dkr.ecr.eu-north-1.amazonaws.com/nginx-service # Define the ECR repository Keel should monitor
     keel.sh/docker.username: AWS # AWS ECR uses "AWS" as the username
 spec:
- replicas: 1
- selector:
-   matchLabels:
-     app: nginx
- template:
-   metadata:
-     labels:
-       app: nginx
-   spec:
-     serviceAccountName: keel-service-account  # The service account with attached IAM role for ECR access
-     containers:
-     - name: nginx
-       image: 324483885455.dkr.ecr.eu-north-1.amazonaws.com/nginx-service:1.0.0
-       ports:
-       - containerPort: 80
-       volumeMounts:
-       - name: nginx-config-volume
-         mountPath: /usr/share/nginx/html
-     volumes:
-     - name: nginx-config-volume
-       configMap:
-         name: nginx-config
+  serviceAccountName: keel-service-account  # The service account with attached IAM role for ECR access
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: 324483885455.dkr.ecr.eu-north-1.amazonaws.com/nginx-service:1.0.0
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: nginx-config-volume
+          mountPath: /usr/share/nginx/html
+      volumes:
+      - name: nginx-config-volume
+        configMap:
+          name: nginx-config
