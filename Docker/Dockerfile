@@ -4,7 +4,7 @@ FROM nginx:latest
 # remove the default nginx configuration file so it will use the new one i createddddddfffefefddגגגbbbsssffttsxg
 RUN rm /etc/nginx/conf.d/default.conf
 
-# copy the custom nginx configuration file into the containerjjSdEeRRccffdddewddrdffddssxxבeeddfvdsdsdsdggggfgfg
+# copy the custom nginx configuration file into the containerjjSdEeRRccffdsdsdsdddewddrdffddssxxבeeddfvdsdsdsdggggfgfg
 COPY nginx.conf /etc/nginx/nginx.conf
 
 # expose port 80 to access the web server again with corrected it yesd 999bbbbddddfdfddddddcccfffdddggcdcdggfdcdcdgceeee

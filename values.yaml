@@ -16,3 +16,6 @@ env:
 ecr:
   enabled: true
   region: eu-north-1
+serviceAccountName:
+  create: false  # Set to false if you are using an existing service account
+  name: keel-service-account 
