@@ -120,7 +120,7 @@ resource "aws_iam_role" "keel_ecr_access_role" {
         Action = "sts:AssumeRoleWithWebIdentity"
         Condition = {
           StringEquals = {
-            "${data.tls_certificate.example.url}:sub" = "system:serviceaccount:keel:keel-service-account"
+            "${data.tls_certificate.example.url}:sub" = "system:serviceaccount:nginx:keel-service-account"
           }
         }
       }
