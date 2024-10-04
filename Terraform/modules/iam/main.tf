@@ -1,11 +1,11 @@
 locals {
- policies = ["arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy", "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy", "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"]
+  policies = ["arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy", "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy", "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"]
 }
 
 resource "aws_iam_role" "eks_cluster_role" {
- name = "eks-role"
+  name = "eks-role"
 
- assume_role_policy = <<EOF
+  assume_role_policy = <<EOF
 {
  "Version": "2012-10-17",
  "Statement": [
@@ -21,20 +21,20 @@ resource "aws_iam_role" "eks_cluster_role" {
 }
 EOF
 
- tags = {
-   Name = "eks-role"
- }
+  tags = {
+    Name = "eks-role"
+  }
 }
 
 resource "aws_iam_role_policy_attachment" "eks_cluster_role_attachment" {
- role       = aws_iam_role.eks_cluster_role.name
- policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
+  role       = aws_iam_role.eks_cluster_role.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
 }
 
 resource "aws_iam_role" "eks_node_role" {
- name = "eks-node-role"
+  name = "eks-node-role"
 
- assume_role_policy = <<EOF
+  assume_role_policy = <<EOF
 {
  "Version": "2012-10-17",
  "Statement": [
@@ -50,13 +50,16 @@ resource "aws_iam_role" "eks_node_role" {
 }
 EOF
 
- tags = {
-   Name = "eks-node-role"
- }
+  tags = {
+    Name = "eks-node-role"
+  }
 }
 
 resource "aws_iam_role_policy_attachment" "eks_role_attachment" {
- for_each   = toset(local.policies)
- role       = aws_iam_role.eks_node_role.name
- policy_arn = each.value
+  for_each   = toset(local.policies)
+  role       = aws_iam_role.eks_node_role.name
+  policy_arn = each.value
 }
+
+#From this part it will be the keel policy & attachment for the service account that will be created in the k8s cluster
+
