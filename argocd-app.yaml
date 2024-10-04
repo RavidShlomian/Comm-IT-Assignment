@@ -6,9 +6,9 @@ metadata:
 spec:
  project: default
  source:
-   repoURL: 'https://github.com/RavidShlomian/Comm-IT-Assignment'
+   repoURL: 'https://github.com/RavidShlomian/Comm-IT-Assignment.git'
    targetRevision: main
-   path: '/manifests'
+   path: './manifests'
  destination:
    server: 'https://kubernetes.default.svc'
    namespace: nginx
