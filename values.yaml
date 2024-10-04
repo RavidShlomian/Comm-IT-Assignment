@@ -13,3 +13,6 @@ docker:
 env:
   - name: AWS_REGION
     value: eu-north-1 
+ecr:
+  enabled: true
+  region: eu-north-1
