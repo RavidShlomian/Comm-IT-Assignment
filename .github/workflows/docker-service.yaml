@@ -81,14 +81,3 @@ jobs:
       run: |
         echo "Docker image pushed to ECR: $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$REPO_NAME:1.0.0"
 
-    - name: Update Kubernetes Manifests
-      run: |
-        sed -i 's|image:.*|image: '"${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.REPO_NAME }}:1.0.0"'|' manifests/deployment.yaml 
-
-    - name: Commit and Push Changes to Manifests
-      run: |
-        git config user.name "GitHub Actions"
-        git config user.email "actions@github.com"
-        git add manifests/deployment.yaml
-        git commit -m "Update image to $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$REPO_NAME/$IMAGE_NAME:${{ env.VERSION }}"  
-        git push origin main
