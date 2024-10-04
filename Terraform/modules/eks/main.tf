@@ -138,7 +138,7 @@ resource "aws_iam_role_policy_attachment" "keel_ecr_policy_attachment" {
 resource "kubernetes_service_account" "keel_service_account" {
   metadata {
     name      = "keel-service-account"
-    namespace = "nginx"
+    namespace = "keel"
     annotations = {
       "eks.amazonaws.com/role-arn" = aws_iam_role.keel_ecr_access_role.arn
     }
