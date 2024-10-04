@@ -104,4 +104,4 @@ jobs:
         #git config pull.rebase true  
         #git pull origin dev 
         #git push https://x-access-token:${{ secrets.TOKEN_GITHUB }}@github.com/RavidShlomian/k8s-manifests.git dev
-        git push
+        git push dev2
