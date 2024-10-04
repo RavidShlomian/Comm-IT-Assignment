@@ -81,27 +81,25 @@ jobs:
       run: |
         echo "Docker image pushed to ECR: $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$REPO_NAME:1.0.0"
 
-    - name: Checkout Manifests Repository
-      uses: actions/checkout@v2
-      with:
-        repository: ${{ secrets.MANIFEST_REPO }}  
-        token: ${{ secrets.TOKEN_GITHUB }}
-        path: manifests-repo  # This clones the separate repository into the 'manifests' directoryu
+    #- name: Checkout Manifests Repository
+     # uses: actions/checkout@v2
+      #with:
+       # repository: ${{ secrets.MANIFEST_REPO }}  
+        #token: ${{ secrets.TOKEN_GITHUB }}
+        #path: manifests-repo  # This clones the separate repository into the 'manifests' directoryu
 
     - name: Update Kubernetes Manifests
       run: |
-        cd manifests-repo
         sed -i 's|image:.*|image: '"${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.REPO_NAME }}:1.0.0"'|' manifests/deployment.yaml
 
     - name: Commit and Push Changes to Manifests
       run: |
-        cd manifests-repo
         git config user.name "GitHub Actions"
         git config user.email "actions@github.com"
-        git checkout -b dev
+        #git checkout -b dev
         git add manifests/deployment.yaml
         git commit -m "Update image to $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$REPO_NAME/$IMAGE_NAME:${{ env.VERSION }}"  
         #git config pull.rebase true  
         #git pull origin dev 
         #git push https://x-access-token:${{ secrets.TOKEN_GITHUB }}@github.com/RavidShlomian/k8s-manifests.git dev
-        git push dev2
+        git push origin main
