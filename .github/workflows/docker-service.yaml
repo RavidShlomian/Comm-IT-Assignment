@@ -70,7 +70,7 @@ jobs:
 
     - name: Tag Docker Image
       run: |
-        echo "$NEW_VERSION" > version.txt
+        #echo "$NEW_VERSION" > version.txt
         docker tag $IMAGE_NAME:latest $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$REPO_NAME:1.0.0
 
     - name: Push Docker Image to ECR
@@ -90,5 +90,6 @@ jobs:
         git config user.name "GitHub Actions"
         git config user.email "actions@github.com"
         git add manifests/deployment.yaml
+        git add version.txt
         git commit -m "Update image to $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$REPO_NAME/$IMAGE_NAME:${{ env.VERSION }}"  
         git push origin main
