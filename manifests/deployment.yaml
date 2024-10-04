@@ -6,7 +6,7 @@ metadata:
   annotations:
     keel.sh/policy: all        # Keel will update the deployment for all image versions (major, minor, patch)
     keel.sh/trigger: poll      # Keel will poll the Docker registry for updates
-    keel.sh/docker.repo: .dkr.ecr.eu-north-1.amazonaws.com/nginx-service # Define the ECR repository Keel should monitor
+    keel.sh/docker.repo: 324483885455.dkr.ecr.eu-north-1.amazonaws.com/nginx-service # Define the ECR repository Keel should monitor
     keel.sh/docker.username: AWS # AWS ECR uses "AWS" as the username
 spec:
  replicas: 1
