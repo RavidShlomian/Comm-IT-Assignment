@@ -7,5 +7,5 @@ RUN rm /etc/nginx/conf.d/default.conf
 # copy the custom nginx configuration file into the containerjjSdEeRRccffdddewddrdffddssxxבeeddfvdsdsdsdgggg
 COPY nginx.conf /etc/nginx/nginx.conf
 
-# expose port 80 to access the web server again with corrected it yesd 999bbbbddddfdfddddddcccfff
+# expose port 80 to access the web server again with corrected it yesd 999bbbbddddfdfddddddcccfffgg
 EXPOSE 80
