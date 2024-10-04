@@ -1,0 +1,15 @@
+USER-SUPPLIED VALUES:
+git:
+  branch: main
+  email: keel-bot@example.com
+  repo: https://github.com/RavidShlomian/Comm-IT-Assignment.git
+  tokenSecret: github-token-secret
+  username: github-actions
+docker:
+  repos:
+    - 324483885455.dkr.ecr.eu-north-1.amazonaws.com/nginx-service  # ECR repository for your service
+  username: AWS  # For ECR, set the username as 'AWS' for IAM authentication
+
+env:
+  - name: AWS_REGION
+    value: eu-north-1 
