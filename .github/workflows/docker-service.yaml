@@ -90,6 +90,5 @@ jobs:
         git config user.name "GitHub Actions"
         git config user.email "actions@github.com"
         git add manifests/deployment.yaml
-        git add version.txt
         git commit -m "Update image to $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$REPO_NAME/$IMAGE_NAME:${{ env.VERSION }}"  
         git push origin main
