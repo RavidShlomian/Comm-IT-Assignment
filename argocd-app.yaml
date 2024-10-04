@@ -6,8 +6,8 @@ metadata:
 spec:
  project: default
  source:
-   repoURL: 'https://github.com/RavidShlomian/k8s-manifests'
-   targetRevision: dev
+   repoURL: 'https://github.com/RavidShlomian/Comm-IT-Assignment'
+   targetRevision: main
    path: '.'
  destination:
    server: 'https://kubernetes.default.svc'
