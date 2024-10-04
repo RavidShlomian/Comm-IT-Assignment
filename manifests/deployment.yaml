@@ -15,7 +15,7 @@ spec:
    spec:
      containers:
      - name: nginx
-       image: nginx:latest
+       image: .dkr.ecr.eu-north-1.amazonaws.com/nginx-service:1.0.0
        ports:
        - containerPort: 80
        volumeMounts:
