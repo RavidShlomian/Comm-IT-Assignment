@@ -144,3 +144,18 @@ resource "kubernetes_service_account" "keel_service_account" {
     }
   }
 }
+
+
+
+resource "aws_acm_certificate" "custom_ssl_cert" {
+  domain_name       = "ravidshlo.online"
+  validation_method = "DNS"  # Email validation
+
+  tags = {
+    Name = "ALB-ssl-cert"
+  }
+}
+
+resource "aws_acm_certificate_validation" "custom_ssl_cert_validation" {
+  certificate_arn = aws_acm_certificate.custom_ssl_cert.arn
+}
