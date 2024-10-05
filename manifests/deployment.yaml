@@ -18,8 +18,8 @@ spec:
       labels:
         app: nginx
     spec:
+      serviceAccountName: keel-service-account  # The service account with attached IAM role for ECR access
       containers:
-        serviceAccountName: keel-service-account  # The service account with attached IAM role for ECR access
       - name: nginx
         image: 324483885455.dkr.ecr.eu-north-1.amazonaws.com/nginx-service:1.0.0
         ports:
