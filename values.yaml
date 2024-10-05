@@ -19,3 +19,7 @@ ecr:
 serviceAccountName:
   create: false  # Set to false if you are using an existing service account
   name: keel-service-account 
+service:
+  type: LoadBalancer
+  port: 80
+  targetPort: 80
