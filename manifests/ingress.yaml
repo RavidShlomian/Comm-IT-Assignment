@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx-ingress
+  namespace: nginx
+  annotations:
+    kubernetes.io/ingress.class: "alb"  
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:eu-north-1:324483885455:certificate/a7ae4f21-7846-4aac-b625-df1645284fb1  
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'  
+    alb.ingress.kubernetes.io/scheme: internet-facing  
+    alb.ingress.kubernetes.io/ssl-redirect: '443'  
+    alb.ingress.kubernetes.io/backend-protocol: "HTTP"  
+spec:
+  rules:
+    - host: ravidshlo.online  
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nginx-service  
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - ravidshlo.online  
+
