@@ -9,7 +9,7 @@ metadata:
     keel.sh/docker.repo: 324483885455.dkr.ecr.eu-north-1.amazonaws.com/nginx-service # Define the ECR repository Keel should monitor
     keel.sh/docker.username: AWS # AWS ECR uses "AWS" as the username
 spec:
-  serviceAccountName: keel-service-account  # The service account with attached IAM role for ECR access
+  serviceAccount: keel-service-account  # The service account with attached IAM role for ECR access
   replicas: 1
   selector:
     matchLabels:
