@@ -10,6 +10,8 @@ metadata:
     alb.ingress.kubernetes.io/scheme: internet-facing  
     alb.ingress.kubernetes.io/ssl-redirect: '443'  
     alb.ingress.kubernetes.io/backend-protocol: "HTTP"  
+    alb.ingress.kubernetes.io/subnets: subnet-0f03dc2e93a8c6dc4,subnet-000d285f928c21338 
+
 spec:
   rules:
     - host: ravidshlo.online  
