@@ -1,13 +1,25 @@
 apiVersion: v1
 kind: Service
 metadata:
- name: nginx-service
- namespace: nginx
+  name: nginx-service
+  namespace: nginx
+  annotations:
+    # Tells AWS Load Balancer Controller to use an ALB
+    service.beta.kubernetes.io/aws-load-balancer-type: "nlb"  # change to "alb" if needed
+    service.beta.kubernetes.io/aws-load-balancer-ssl-cert: arn:aws:acm:region:account-id:certificate/certificate-id  # Replace with your ACM ARN
+    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: "HTTP"
+    service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "443"
+    service.beta.kubernetes.io/aws-load-balancer-connection-idle-timeout: "60"
 spec:
- selector:
-   app: nginx
- ports:
-   - protocol: TCP
-     port: 80
-     targetPort: 80
- type: LoadBalancer
+  type: LoadBalancer
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+      protocol: TCP
+    - name: https
+      port: 443
+      targetPort: 80
+      protocol: TCP  # Traffic will be forwarded to the same port
+  selector:
+    app: nginx
