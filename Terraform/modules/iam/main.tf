@@ -61,5 +61,3 @@ resource "aws_iam_role_policy_attachment" "eks_role_attachment" {
   policy_arn = each.value
 }
 
-#From this part it will be the keel policy & attachment for the service account that will be created in the k8s cluster
-
